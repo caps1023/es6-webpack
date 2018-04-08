@@ -18,13 +18,20 @@ module.exports = {
       {
         test: /\.html$/,
         loader: 'html-loader'
-      }, {
+      },
+      {
+        test: /\.(png|jpg|gif|svg)$/,
+        loader: 'url-loader?limit=8192&name=images/[name][hash:8].[ext]'
+      },
+      {
         test: /\.js$/,
         loader: 'babel-loader'
-      },{
+      },
+      {
         test: /\.scss$/,
         loader: 'style-loader!css-loader!sass-loader'
-      }]
+      }
+      ]
     },
     plugins: [
       new CleanWebpackPlugin(['dist']),
