@@ -2,11 +2,18 @@ const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
-const ExtractTextPlugin = require("extract-text-webpack-plugin");
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
 module.exports = {
   entry: ['babel-polyfill','./index.js'],
+  devtool: 'eval-source-map',
+  devServer: {
+    contentBase: './dist',
+    hot: true,
+    compress: true,
+    port: 9000,
+    clientLogLevel: "none",
+    quiet: true
+  },
   module: {
     loaders: [
       {
@@ -19,31 +26,18 @@ module.exports = {
       },
       {
         test: /\.js$/,
-        exclude: /node_modules/,
         loader: 'babel-loader'
       },
       {
         test: /\.scss$/,
-        loader: ExtractTextPlugin.extract({
-          fallback: "style-loader",
-          use: "css-loader!sass-loader"
-        })
+        loader: 'style-loader!css-loader!sass-loader'
       }
       ]
     },
     plugins: [
       new CleanWebpackPlugin(['dist']),
       new HtmlWebpackPlugin({template: './index.html'}),
-      new ExtractTextPlugin("./css/[name][hash].css"),
-      new UglifyJsPlugin({
-        uglifyOptions: {
-          compress: {
-            warnings: false
-          }
-        },
-        sourceMap: false,
-        parallel: true
-      })
+      new webpack.HotModuleReplacementPlugin()
     ],
     output: {
       filename: 'index.js',
