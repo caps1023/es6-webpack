@@ -10,13 +10,11 @@
 
 ```shell
 npm install
-npm install webpack -g
-npm install webpack-dev-server -g
 ```
 
 
 ### 运行
 
 ```shell
-npm start
+npm run dev
 ```

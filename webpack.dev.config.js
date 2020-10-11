@@ -4,7 +4,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 
 module.exports = {
-  entry: ['babel-polyfill','./index.js'],
+  entry: ['babel-polyfill','./index.js','./index.html'],
   devtool: 'eval-source-map',
   devServer: {
     contentBase: './dist',
@@ -36,11 +36,11 @@ module.exports = {
     },
     plugins: [
       new CleanWebpackPlugin(['dist']),
-      new HtmlWebpackPlugin({template: './index.html'}),
-      new webpack.HotModuleReplacementPlugin()
-    ],
-    output: {
-      filename: 'index.js',
-      path: path.resolve(__dirname, 'dist')
-    }
+      new webpack.HotModuleReplacementPlugin(),
+	  new HtmlWebpackPlugin({
+	    filename: 'index.html',
+	    template: 'index.html',
+	    inject: true
+	  })
+    ]
   };

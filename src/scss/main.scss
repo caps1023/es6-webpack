@@ -1,7 +1,12 @@
+$Color: #333;
+
 *{
     padding:0;
     margin: 0;
 }
 body{
-    background: url('../images/bg.gif');    
+    background: #efefef; 
+	 h1{
+		 color: $Color;
+	 }
 }

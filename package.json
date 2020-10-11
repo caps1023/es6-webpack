@@ -5,11 +5,11 @@
   "main": "index.js",
   "scripts": {
     "watch": "webpack --watch",
-    "start": "webpack-dev-server --open  --config webpack.dev.config.js"
+    "dev": "webpack-dev-server --open --inline --progress  --config webpack.dev.config.js"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/cucygh/es6-webpack.git"
+    "url": "https://github.com/caps1023/es6-webpack.git"
   },
   "author": "",
   "license": "MIT",
